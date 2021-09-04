@@ -1,6 +1,18 @@
 import { Component } from "@angular/core";
+import { Cart } from "../model/cart.model";
+import { Product } from "../model/product.model";
 
 @Component({
-    template : `<div><h3 class="bg-info p-1 text-white">Cart Detail Component</h3></div>`
+    templateUrl : "./cartDetail.component.html"
 })  
-export class CartDetailComponent{}
+export class CartDetailComponent{
+    constructor(public cart : Cart){
+
+    }
+
+    updateQuantity(product: Product, e : any){
+        let qty = e.target?.value;
+        qty = qty ? Number(qty) : 0;
+        this.cart.updateQuantity(product, qty);
+    }
+}
